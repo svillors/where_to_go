@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 def index(request):
-    places = list(Place.objects.all().prefetch_related('images'))
+    places = list(Place.objects.all())
     geojson = {
       "type": "FeatureCollection",
       "features": []
@@ -30,7 +30,7 @@ def index(request):
 
 
 def places(request, id):
-    place = get_object_or_404(Place, id=id)
+    place = get_object_or_404(Place.objects.prefetch_related('images'), id=id)
     place_json = {
         'title': place.title,
         'imgs': [img.image.url for img in place.images.all()],
