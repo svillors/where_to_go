@@ -2,7 +2,7 @@ from django.shortcuts import render
 from places.models import Place
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
-
+from django.urls import reverse
 
 
 def index(request):
@@ -22,16 +22,7 @@ def index(request):
                 "properties": {
                     "title": place.title_short if place.title_short else '',
                     "placeId": place.id,
-                    "detailsUrl": {  # пока пусть будет так
-                        'title': place.title,
-                        'imgs': [img.image.url for img in place.images.all()],
-                        'description_short': place.description_short,
-                        'description_long': place.description_long,
-                        'coordinates': {
-                            "lng": place.longitude,
-                            "lat": place.latitude
-                        }
-                    }
+                    "detailsUrl": reverse('places', args=[place.id])
                 }
             }
         )
