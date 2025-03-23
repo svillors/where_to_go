@@ -9,6 +9,9 @@ class Place(models.Model):
     longitude = models.DecimalField(max_digits=20, decimal_places=17)
     latitude = models.DecimalField(max_digits=20, decimal_places=17)
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         return self.title
 
@@ -21,6 +24,9 @@ class Image(models.Model):
     )
     image = models.ImageField()
     position = models.PositiveIntegerField(default=1)
+
+    class Meta:
+        ordering = ['position']
 
     def __str__(self):
         return f' Image number {self.position} for {self.place.title}'
