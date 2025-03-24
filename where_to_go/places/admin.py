@@ -17,10 +17,12 @@ class ImagesInline(SortableTabularInline):
             obj.image.height
         )
 
+
 @admin.register(Place)
 class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ['id', 'title',]
     inlines = [ImagesInline]
+    search_fields = ['title']
 
 
 @admin.register(Image)
