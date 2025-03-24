@@ -23,3 +23,6 @@ Start the development server:
 ```
 python3 manage.py runserver
 ```
+
+## Demo
+This repository is live at: [pythonanywhere](https://vilor.pythonanywhere.com/)
