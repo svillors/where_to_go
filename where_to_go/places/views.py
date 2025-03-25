@@ -20,7 +20,7 @@ def index(request):
                     "coordinates": [place.longitude, place.latitude]
                 },
                 "properties": {
-                    "title": place.title_short if place.title_short else '',
+                    "title": place.title,
                     "placeId": place.id,
                     "detailsUrl": reverse('places', args=[place.id])
                 }
