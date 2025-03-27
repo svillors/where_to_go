@@ -1,7 +1,7 @@
 from django.contrib import admin
 from places.models import Place, Image
-from django.utils.html import format_html
 from adminsortable2.admin import SortableAdminMixin, SortableTabularInline
+from django.utils.html import format_html
 
 
 class ImagesInline(SortableTabularInline):
@@ -11,7 +11,7 @@ class ImagesInline(SortableTabularInline):
 
     def get_image(self, obj):
         return format_html(
-            '<img src="{}" width="{}" height="{}" style="max-height:200px; height:auto; width:auto;" />',
+            '<img src="{}" width="{}" height="{}" style="max-height:200px; width:auto;" />',
             obj.image.url,
             obj.image.width,
             obj.image.height
@@ -27,4 +27,4 @@ class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    pass
+    raw_id_fields = ['place']
