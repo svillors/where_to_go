@@ -39,11 +39,12 @@ class Command(BaseCommand):
                 response.raise_for_status()
 
                 name = os.path.basename(urlparse(response.url).path)
-                content = ContentFile(response.content)
-
-                image_obj = Image(place=place, position=number)
-                image_obj.image.save(name, content, save=False)
-                image_obj.save()
+                content = ContentFile(response.content, name=name)
+                Image.objects.create(
+                    place=place,
+                    image=content,
+                    position=number
+                )
 
             self.stdout.write(
                 self.style.SUCCESS(f'Created new place: {place.title}')
