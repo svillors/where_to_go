@@ -2,7 +2,7 @@
 Online map based on Django
 
 ## Launch
-To run the site, you will need Python 3.
+To run the site, you will need Python 3.10.
 
 Download the code from GitHub. Install the dependencies:
 ```
@@ -15,7 +15,7 @@ python3 manage.py migrate
 Create `.env` file and set environment variables.
 ### variables
 - DEBUG = debug mode. Set to True to see debug information in case of an error.
-- DJANGO_SECRET_KEY - project secret key.
+- DJANGO_SECRET_KEY - A secret key for a particular Django installation. [Django documentation](https://docs.djangoproject.com/en/5.1/ref/settings/#secret-key)
 - ALLOWED_HOSTS - [Django documentation](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts)
 
 
