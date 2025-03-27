@@ -6,13 +6,10 @@ from django.urls import reverse
 
 
 def index(request):
-    places = list(Place.objects.all())
+    places = Place.objects.all()
     geojson = {
       "type": "FeatureCollection",
-      "features": []
-    }
-    for place in places:
-        geojson['features'].append(
+      "features": [
             {
                 "type": "Feature",
                 "geometry": {
@@ -24,14 +21,15 @@ def index(request):
                     "placeId": place.id,
                     "detailsUrl": reverse('places', args=[place.id])
                 }
-            }
-        )
+            } for place in places
+      ]
+    }
     return render(request, 'index.html', {'geojson': geojson})
 
 
 def places(request, id):
     place = get_object_or_404(Place.objects.prefetch_related('images'), id=id)
-    place_json = {
+    place_serialize = {
         'title': place.title,
         'imgs': [img.image.url for img in place.images.all().order_by(
             'position')],
@@ -43,6 +41,6 @@ def places(request, id):
         }
     }
     return JsonResponse(
-        place_json,
+        place_serialize,
         json_dumps_params={'indent': 5, 'ensure_ascii': False}
     )
