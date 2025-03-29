@@ -1,8 +1,10 @@
-from django.core.management.base import BaseCommand, CommandError
-from django.core.files.base import ContentFile
 import os
 from urllib.parse import urlparse
+
 import requests
+from django.core.management.base import BaseCommand, CommandError
+from django.core.files.base import ContentFile
+
 from ...models import Place, Image
 
 
