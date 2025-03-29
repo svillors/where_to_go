@@ -12,10 +12,8 @@ class ImagesInline(SortableTabularInline):
 
     def get_image(self, obj):
         return format_html(
-            '<img src="{}" width="{}" height="{}" style="max-height:200px; width:auto;" />',
-            obj.image.url,
-            obj.image.width,
-            obj.image.height
+            '<img src="{}" style="max-height:200px; max-width:200px;" />',
+            obj.image.url
         )
 
 
